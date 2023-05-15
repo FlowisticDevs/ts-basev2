@@ -18,7 +18,7 @@ export class RegisterDevCommands implements RecipleModuleScript {
     }
 
     public async onLoad(client: RecipleClient<true>, module: RecipleModule): Promise<void> {
-        if (!process.env.guild) return;
+        if (!process.env.devguild) return;
 
         const modules = client.modules.modules.map(s => s.script as RecipleModuleScript & { devCommands?: (SlashCommandResolvable | ContextMenuCommandResolvable)[] });
         const commands: (AnySlashCommandBuilder | ContextMenuCommandBuilder)[] = [];
@@ -34,13 +34,13 @@ export class RegisterDevCommands implements RecipleModuleScript {
         }
 
         client.on('recipleRegisterApplicationCommands', (registeredCommands, guildId) => {
-            if (guildId === process.env.guild) return;
+            if (guildId === process.env.devguild) return;
 
             client.commands.add(commands);
-            client.logger?.log(`Registered ${commands.length} dev commands for guild ${process.env.guild}`);
+            client.logger?.log(`Registered ${commands.length} dev commands for guild ${process.env.devguild}`);
         });
 
-        await client.application.commands.set(commands, process.env.dev_guild!);
+        await client.application.commands.set(commands, process.env.devguild!);
     }
 }
 

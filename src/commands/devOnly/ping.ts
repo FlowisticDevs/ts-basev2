@@ -7,7 +7,7 @@ export class Ping {
             .setName('ping')
             .setDescription('Verify the bot connection')
             .setExecute(async ({ interaction, client }) => {
-                await interaction.reply(`$client.ws.ping}ms`);
+                await interaction.reply(`${client.ws.ping}ms`);
             })
     ];
 
