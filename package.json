@@ -1,0 +1,21 @@
+{
+  "name": "reciple-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npx rimraf ./modules && npx tsc",
+    "start": "npx reciple",
+    "build:start": "npm run build && npm run start",
+    "dev": "npx nodemon --watch src --ext ts,mts,cts --exec \"npm run build:start\" --signal SIGHUP"
+  },
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "reciple": "^7.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.0.2",
+    "rimraf": "^4.4.1"
+  }
+}
